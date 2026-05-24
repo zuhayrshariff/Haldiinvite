@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omair ki Haldi 🌼</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Petal canvas -->
+  <canvas id="petalCanvas"></canvas>
+
+  <!-- Music -->
+  <button class="music-btn" id="musicBtn" aria-label="Play music">♪</button>
+  <audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+  <!-- Envelope screen -->
+  <div class="envelope-screen" id="envelopeScreen">
+    <div class="env-wrapper" id="envWrapper">
+      <div class="envelope" id="envelope">
+        <div class="env-body"></div>
+        <div class="env-flap" id="envFlap"></div>
+        <div class="env-left"></div>
+        <div class="env-right"></div>
+        <div class="env-bottom"></div>
+        <div class="env-seal" id="envSeal">🌼</div>
+      </div>
+      <p class="tap-hint" id="tapHint">Tap to open</p>
+    </div>
+  </div>
+
+  <!-- Invitation card -->
+  <main class="card-screen hidden" id="cardScreen">
+
+    <header class="card-header">
+      <div class="marigold-border top"></div>
+      <p class="you-are-invited fade-up">— You're Invited —</p>
+      <h1 class="event-title fade-up">Omair ki<br><span>Haldi</span></h1>
+      <p class="urdu fade-up">عمیر کی ہلدی</p>
+      <div class="marigold-border bottom"></div>
+    </header>
+
+    <section class="couple-section fade-up">
+      <div class="groom-only">
+        <span class="label"></span>
+        <h2>Omair Nazir Shariff</h2>
+        <p class="parent-line">Son of Mrs. and Mr. Mohammed Nawaz Ahmed Shariff</p>
+      </div>
+    </section>
+
+    <section class="details-section fade-up">
+      <div class="detail-card">
+        <span class="icon">📅</span>
+        <p class="d-label">Date</p>
+        <p class="d-value">Tuesday, 7th July 2026</p>
+      </div>
+      <div class="detail-card">
+        <span class="icon">⏰</span>
+        <p class="d-label">Time</p>
+        <p class="d-value">6:00 PM Onwards</p>
+      </div>
+      <div class="detail-card">
+        <span class="icon">📍</span>
+        <p class="d-label">Venue</p>
+        <p class="d-value">Dilshad Paradise,RT-Nagar Bengaluru</p>
+      </div>
+    </section>
+
+    <section class="message-section fade-up">
+      <div class="message-box">
+        <p class="msg-quote">"</p>
+        <p class="msg-text">
+          <br>A Touch of Yellow, A Shower of Blessings</br>
+
+<br>Join us as we celebrate love, laughter, and togetherness at our Haldi Ceremony.</br>
+
+<br>Surrounded by family, friends, and heartfelt duas, we begin our wedding festivities with happiness and tradition.</br>
+
+<br>Surrounded by family, friends, and heartfelt duas, we begin our wedding festivities with happiness and tradition.</br>
+<br>We warmly invite you to share in this special day and create beautiful memories with us.</br>
+<h2><br>Your presence will make it even more meaningful.</br></h2>
+        </p>
+        <p class="msg-quote close-q">"</p>
+      </div>
+    </section>
+    
+
+
+    <section class="cta-section fade-up">
+      <a class="btn maps-btn" href="https://maps.google.com/?q=Dilshad+Paradise+Bengaluru" target="_blank">
+        <span>📍</span> View on Google Maps
+      </a>
+      <a class="btn rsvp-btn" href="https://wa.me/919108405996?text=Assalamualaikum!%20I%20will%20be%20attending%20Omair%27s%20Haldi%20InshAllah%20%F0%9F%8C%BC" target="_blank">
+        <span>💬</span> Reply with WhatsApp
+      </a>
+    </section>
+
+    <footer class="card-footer fade-up">
+      <p>With love &amp; duas 🤍</p>
+      <p class="footer-small">Nawaz Ahmed Shariff &amp; Family</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
