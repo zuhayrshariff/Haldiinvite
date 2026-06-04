@@ -8,26 +8,60 @@ const tapHint = document.getElementById('tapHint');
 const cardScreen = document.getElementById('cardScreen');
 let envelopeOpened = false;
 
+// ── MUSIC ──
+const musicBtn = document.getElementById('musicBtn');
+const bgMusic = document.getElementById('bgMusic');
+
+function playMusic() {
+  bgMusic.play().then(() => {
+    musicBtn.textContent = '🔊';
+    musicBtn.classList.add('playing');
+  }).catch(() => {
+    musicBtn.textContent = '🔇';
+    musicBtn.classList.remove('playing');
+  });
+}
+
+function pauseMusic() {
+  bgMusic.pause();
+  musicBtn.textContent = '🔇';
+  musicBtn.classList.remove('playing');
+}
+
 document.getElementById('envelope').addEventListener('click', openEnvelope);
 document.getElementById('tapHint').addEventListener('click', openEnvelope);
 
 function openEnvelope() {
   if (envelopeOpened) return;
   envelopeOpened = true;
+
+  playMusic();
+
   tapHint.style.opacity = '0';
   envSeal.classList.add('hidden');
   envFlap.classList.add('open');
+
   setTimeout(() => {
     envelopeScreen.classList.add('gone');
     cardScreen.classList.remove('hidden');
     startPetals();
     initScrollAnimations();
-    // Stagger header items
+
     document.querySelectorAll('.card-header .fade-up').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), 200 + i * 150);
     });
   }, 900);
 }
+
+musicBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+
+  if (bgMusic.paused) {
+    playMusic();
+  } else {
+    pauseMusic();
+  }
+});
 
 // ── PETALS ──
 const canvas = document.getElementById('petalCanvas');
@@ -64,6 +98,7 @@ function drawPetal(p) {
   ctx.rotate((p.rotation * Math.PI) / 180);
   ctx.globalAlpha = p.opacity;
   ctx.fillStyle = p.color;
+
   if (p.shape === 'petal') {
     ctx.beginPath();
     ctx.ellipse(0, 0, p.size / 2, p.size, 0, 0, Math.PI * 2);
@@ -73,19 +108,26 @@ function drawPetal(p) {
     ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
     ctx.fill();
   }
+
   ctx.restore();
 }
 
 function animatePetals() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (Math.random() < 0.15 && petals.length < 60) petals.push(createPetal());
+
+  if (Math.random() < 0.15 && petals.length < 60) {
+    petals.push(createPetal());
+  }
+
   petals = petals.filter(p => p.y < canvas.height + 30);
+
   petals.forEach(p => {
     p.y += p.speed;
     p.x += p.drift + Math.sin(p.y * 0.02) * 0.8;
     p.rotation += p.rotSpeed;
     drawPetal(p);
   });
+
   animFrame = requestAnimationFrame(animatePetals);
 }
 
@@ -108,21 +150,3 @@ function initScrollAnimations() {
     observer.observe(el);
   });
 }
-
-// ── MUSIC ──
-const musicBtn = document.getElementById('musicBtn');
-const bgMusic = document.getElementById('bgMusic');
-let playing = false;
-
-musicBtn.addEventListener('click', () => {
-  if (playing) {
-    bgMusic.pause();
-    musicBtn.textContent = '♪';
-    musicBtn.classList.remove('playing');
-  } else {
-    bgMusic.play().catch(() => {});
-    musicBtn.textContent = '■';
-    musicBtn.classList.add('playing');
-  }
-  playing = !playing;
-});
