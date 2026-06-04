@@ -107,52 +107,10 @@
 
   </main>
 
-  <script src="script.js"></script>
+ <script src="script.js"></script>
 
-  <script>
-    const music = document.getElementById("bgMusic");
-    const musicBtn = document.getElementById("musicBtn");
-    const envWrapper = document.getElementById("envWrapper");
-
-    function startMusic() {
-      music.play()
-        .then(() => {
-          musicBtn.innerHTML = "🔊";
-          musicBtn.classList.add("playing");
-        })
-        .catch((err) => {
-          console.log("Music blocked:", err);
-          musicBtn.innerHTML = "🔇";
-          musicBtn.classList.remove("playing");
-        });
-    }
-
-    envWrapper.addEventListener("click", () => {
-      startMusic();
-    });
-
-    musicBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-
-      if (music.paused) {
-        startMusic();
-      } else {
-        music.pause();
-        musicBtn.innerHTML = "🔇";
-        musicBtn.classList.remove("playing");
-      }
-    });
-
-    music.addEventListener("play", () => {
-      musicBtn.innerHTML = "🔊";
-      musicBtn.classList.add("playing");
-    });
-
-    music.addEventListener("pause", () => {
-      musicBtn.innerHTML = "🔇";
-      musicBtn.classList.remove("playing");
-    });
-  </script>
+</body>
+</html>
 
 </body>
 </html>
