@@ -9,14 +9,13 @@
 </head>
 <body>
 
-  <!-- Petal canvas -->
   <canvas id="petalCanvas"></canvas>
 
   <!-- Music -->
-  <button class="music-btn" id="musicBtn" aria-label="Play music">♪</button>
-  <audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+  <button class="music-btn" id="musicBtn" aria-label="Play or pause music">🔇</button>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- Envelope screen -->
   <div class="envelope-screen" id="envelopeScreen">
@@ -66,7 +65,7 @@
       <div class="detail-card">
         <span class="icon">📍</span>
         <p class="d-label">Venue</p>
-        <p class="d-value">Dilshad Paradise,RT-Nagar Bengaluru</p>
+        <p class="d-value">Dilshad Paradise, RT-Nagar Bengaluru</p>
       </div>
     </section>
 
@@ -74,21 +73,15 @@
       <div class="message-box">
         <p class="msg-quote">"</p>
         <p class="msg-text">
-          <br>A Touch of Yellow, A Shower of Blessings</br>
-
-<br>Join us as we celebrate love, laughter, and togetherness at our Haldi Ceremony.</br>
-
-<br>Surrounded by family, friends, and heartfelt duas, we begin our wedding festivities with happiness and tradition.</br>
-
-<br>Surrounded by family, friends, and heartfelt duas, we begin our wedding festivities with happiness and tradition.</br>
-<br>We warmly invite you to share in this special day and create beautiful memories with us.</br>
-<h2><br>Your presence will make it even more meaningful.</br></h2>
+          A Touch of Yellow, A Shower of Blessings<br><br>
+          Join us as we celebrate love, laughter, and togetherness at our Haldi Ceremony.<br><br>
+          Surrounded by family, friends, and heartfelt duas, we begin our wedding festivities with happiness and tradition.<br><br>
+          We warmly invite you to share in this special day and create beautiful memories with us.
         </p>
+        <h2>Your presence will make it even more meaningful.</h2>
         <p class="msg-quote close-q">"</p>
       </div>
     </section>
-    
-
 
     <section class="cta-section fade-up">
       <a class="btn maps-btn" href="https://maps.google.com/?q=Dilshad+Paradise+Bengaluru" target="_blank">
@@ -107,5 +100,33 @@
   </main>
 
   <script src="script.js"></script>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const envWrapper = document.getElementById("envWrapper");
+
+    function playMusic() {
+      music.play().then(() => {
+        musicBtn.innerHTML = "🔊";
+      }).catch(() => {
+        musicBtn.innerHTML = "🔇";
+      });
+    }
+
+    envWrapper.addEventListener("click", () => {
+      playMusic();
+    });
+
+    musicBtn.addEventListener("click", () => {
+      if (music.paused) {
+        playMusic();
+      } else {
+        music.pause();
+        musicBtn.innerHTML = "🔇";
+      }
+    });
+  </script>
+
 </body>
 </html>
